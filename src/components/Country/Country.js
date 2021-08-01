@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Card,CardActionArea,
     CardMedia,CardContent,Typography,CardActions,Button} from '@material-ui/core'
+import { useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -15,6 +16,11 @@ const useStyles = makeStyles({
 const Country = (props) => {
     const {name,subregion,flag} = props.country
     const classes = useStyles()
+     
+    const history = useHistory()
+    const hadleCountryDetails = (countryName) =>{
+      history.push(`/country/${countryName}`)
+    }
     return (
         <Card className={classes.root}>
         <CardActionArea>
@@ -33,8 +39,8 @@ const Country = (props) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" variant="contained" color="primary">
-            Share
+          <Button size="small" variant="contained" color="primary" onClick={()=>hadleCountryDetails(name)}>
+            Details
           </Button>
         </CardActions>
       </Card>
